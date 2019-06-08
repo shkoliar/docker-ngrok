@@ -8,7 +8,7 @@ A Docker image for <a href="https://ngrok.com" target="_blank" rel="noopener">ng
 
 **Using ngrok parameters:** 
 ```
-$ docker run --rm -it --link <web_container_name> [--net <docker_netowrk_name>] shkoliar/ngrok <ngrok parameters> <web_container_name>:<port>
+$ docker run --rm -it --link <web_container_name> [--net <docker_netowrk_name>] shkoliar/ngrok ngrok <ngrok parameters> <web_container_name>:<port>
 ``` 
 For information about ngrok parameters, please refer to <a href="https://ngrok.com/docs" target="_blank" rel="noopener">ngrok documentation</a>.
 
@@ -22,7 +22,7 @@ Available env variables can be found below, at [environment variables](#environm
   
 The example below assumes that you have running web server docker container named `dev_web_1` with exposed port 80.
 ```bash
-$ docker run --rm -it --link dev_web_1 shkoliar/ngrok http dev_web_1:80
+$ docker run --rm -it --link dev_web_1 shkoliar/ngrok ngrok http dev_web_1:80
 ```
 
 With command line usage, ngrok session is active until it won't be terminated by `Control+C` combination.
