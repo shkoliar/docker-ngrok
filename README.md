@@ -66,4 +66,4 @@ For more information about ngrok parameters, please refer to <a href="https://ng
 
 ## License
 
-[MIT](../blob/master/LICENSE)
+[MIT](../../blob/master/LICENSE)
