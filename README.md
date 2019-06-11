@@ -6,6 +6,15 @@ A Docker image for [ngrok](https://ngrok.com) service to expose a local docker e
 
 ### Command-line
 
+**Example**  
+The example below assumes that you have running web server docker container named `dev_web_1` with exposed port `80`.
+```bash
+docker run --rm -it --link dev_web_1 shkoliar/ngrok ngrok http dev_web_1:80
+```
+With command line usage, ngrok session is active until it won't be terminated by `Ctrl+C` combination.  
+
+#### Command details
+
 **Using ngrok parameters**  
 ```
 docker run --rm -it --link <web-container-name> [--net <default-netowrk-name>] shkoliar/ngrok ngrok <ngrok-parameters> <web-container-name>:<port>
@@ -18,13 +27,9 @@ docker run --rm -it --link <web-container-name> [--net <default-netowrk-name>] -
 ``` 
 Available env variables can be found below, at [environment variables](#environment-variables) section.
 
-**Example**  
-The example below assumes that you have running web server docker container named `dev_web_1` with exposed port 80.
-```bash
-docker run --rm -it --link dev_web_1 shkoliar/ngrok ngrok http dev_web_1:80
-```
+#### Troubleshooting
 
-*If with above command you are getting an error like*  
+*If you are getting an error like*  
 ```bash
 docker: Error response from daemon: Cannot link to /dev_web_1, as it does not belong to the default network.
 ```
@@ -33,8 +38,6 @@ docker: Error response from daemon: Cannot link to /dev_web_1, as it does not be
 ```bash
 docker run --rm -it --link dev_web_1 --net dev_default shkoliar/ngrok ngrok http dev_web_1:80
 ```
-
-**With command line usage, ngrok session is active until it won't be terminated by `Ctrl+C` combination.**  
 
 ### As part of docker-compose.yml file 
 
