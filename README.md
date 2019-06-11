@@ -1,31 +1,40 @@
 # Docker Ngrok
 
-A Docker image for <a href="https://ngrok.com" target="_blank" rel="noopener">ngrok</a> service to expose a local docker environment or any other local server to the public internet over secure tunnels. The image is built using official <a href="https://hub.docker.com/_/busybox" target="_blank" rel="noopener">busybox:glibc</a> docker image, so no third party libraries are used, only official busybox and ngrok binary.  
+A Docker image for [ngrok](https://ngrok.com) service to expose a local docker environment or any other local server to the public internet over secure tunnels. The image is built using official [busybox:glibc](https://hub.docker.com/_/busybox) docker image, so no third party libraries are used, only official busybox and ngrok binary.  
 
 ## Usage  
 
 ### Command-line
 
-**Using ngrok parameters:** 
+**Using ngrok parameters**  
 ```
-$ docker run --rm -it --link <web_container_name> [--net <docker_netowrk_name>] shkoliar/ngrok ngrok <ngrok parameters> <web_container_name>:<port>
+docker run --rm -it --link <web-container-name> [--net <default-netowrk-name>] shkoliar/ngrok ngrok <ngrok-parameters> <web-container-name>:<port>
 ``` 
-For information about ngrok parameters, please refer to <a href="https://ngrok.com/docs" target="_blank" rel="noopener">ngrok documentation</a>.
+For information about ngrok parameters, please refer to [ngrok documentation](https://ngrok.com/docs).
 
-**Passing parameters to ngrok via env variables:**   
+**Passing parameters to ngrok via env variables**  
 ```
-$ docker run --rm -it --link <web_container_name> [--net <docker_netowrk_name>] --env DOMAIN=<web_container_name> --env PORT=<port> shkoliar/ngrok
+docker run --rm -it --link <web-container-name> [--net <default-netowrk-name>] --env DOMAIN=<web-container-name> --env PORT=<port> shkoliar/ngrok
 ``` 
 Available env variables can be found below, at [environment variables](#environment-variables) section.
 
-**Example:**
-  
+**Example**  
 The example below assumes that you have running web server docker container named `dev_web_1` with exposed port 80.
 ```bash
-$ docker run --rm -it --link dev_web_1 shkoliar/ngrok ngrok http dev_web_1:80
+docker run --rm -it --link dev_web_1 shkoliar/ngrok ngrok http dev_web_1:80
 ```
 
-With command line usage, ngrok session is active until it won't be terminated by `Control+C` combination.
+*If with above command you are getting an error like*  
+```bash
+docker: Error response from daemon: Cannot link to /dev_web_1, as it does not belong to the default network.
+```
+
+*You need to specify default docker network, for example*  
+```bash
+docker run --rm -it --link dev_web_1 --net dev_default shkoliar/ngrok ngrok http dev_web_1:80
+```
+
+**With command line usage, ngrok session is active until it won't be terminated by `Ctrl+C` combination.**  
 
 ### As part of docker-compose.yml file 
 
@@ -62,7 +71,7 @@ BIND_TLS|true, false| |Optional, forward only HTTP or HTTPS traffic, but not bot
 DEBUG|true| |Optional, write logs to stdout.
 PARAMS|*| |Pass all ngrok parameters by one string. When specified, any other env variables are skipped.
 
-For more information about ngrok parameters, please refer to <a href="https://ngrok.com/docs" target="_blank" rel="noopener">ngrok documentation</a>.
+For more information about ngrok parameters, please refer to [ngrok documentation](https://ngrok.com/docs).
 
 ## License
 
