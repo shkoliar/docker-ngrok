@@ -32,6 +32,10 @@ else
         CMD="$CMD -authtoken $AUTH_TOKEN"
     fi
 
+    if [[ -n "$SUBDOMAIN" ]]; then
+        CMD="$CMD -subdomain $SUBDOMAIN"
+    fi
+
     if [[ -n "$DOMAIN" ]]; then
         CMD="$CMD $DOMAIN:$PORT"
     else
