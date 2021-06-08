@@ -19,7 +19,7 @@ With command line usage, ngrok session is active until it won't be terminated by
 
 **Using ngrok parameters**
 
-```
+```bash
 docker run --rm -it --link <web-container-name> [--net <default-netowrk-name>] shkoliar/ngrok ngrok <ngrok-parameters> <web-container-name>:<port>
 ```
 
@@ -27,7 +27,7 @@ For information about ngrok parameters, please refer to [ngrok documentation](ht
 
 **Passing parameters to ngrok via env variables**
 
-```
+```bash
 docker run --rm -it --link <web-container-name> [--net <default-netowrk-name>] --env DOMAIN=<web-container-name> --env PORT=<port> shkoliar/ngrok
 ```
 
