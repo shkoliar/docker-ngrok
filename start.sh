@@ -28,6 +28,10 @@ else
         CMD="$CMD -log stdout"
     fi
 
+    if [[ -n "$AUTH_TOKEN" ]]; then
+        CMD="$CMD -authtoken $AUTH_TOKEN"
+    fi
+
     if [[ -n "$DOMAIN" ]]; then
         CMD="$CMD $DOMAIN:$PORT"
     else

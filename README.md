@@ -78,6 +78,7 @@ List of available environment variables to configure ngrok in command line usage
 | REGION      | us, eu, ap, au, sa, jp, in | us        | Region where the ngrok client will connect to host its tunnels.                                                                                             |
 | HOST_HEADER | \*                         |           | Optional, rewrite incoming HTTP requests with a modified Host header. e.g. `HOST_HEADER=localdev.test`                                                      |
 | BIND_TLS    | true, false                |           | Optional, forward only HTTP or HTTPS traffic, but not both. By default, when ngrok runs an HTTP tunnel, it opens endpoints for both HTTP and HTTPS traffic. |
+| AUTH_TOKEN  | \*                         |           | Optional, token used to authorise your subdomain with ngrok.                                                                                                |
 | DEBUG       | true                       |           | Optional, write logs to stdout.                                                                                                                             |
 | PARAMS      | \*                         |           | Pass all ngrok parameters by one string. When specified, any other env variables are skipped.                                                               |
 
