@@ -2,6 +2,14 @@
 
 CMD="ngrok"
 
+if [[ -n "$AUTH_TOKEN" ]]; then
+    $CMD authtoken $AUTH_TOKEN
+else
+    $CMD authtoken ''
+fi
+
+clear
+
 PARAMS=${PARAMS:-$(echo $@)}
 
 if [[ -n "$PARAMS" ]]; then
@@ -24,12 +32,12 @@ else
         CMD="$CMD -bind-tls=$BIND_TLS"
     fi
 
-    if [[ -n "$DEBUG" ]]; then
-        CMD="$CMD -log stdout"
+    if [[ -n "$SUBDOMAIN" ]]; then
+        CMD="$CMD -subdomain=$SUBDOMAIN"
     fi
 
-    if [[ -n "$SUBDOMAIN" ]]; then
-        CMD="$CMD -subdomain $SUBDOMAIN"
+    if [[ -n "$DEBUG" ]]; then
+        CMD="$CMD -log stdout"
     fi
 
     if [[ -n "$DOMAIN" ]]; then
