@@ -2,13 +2,7 @@
 
 CMD="ngrok"
 
-if [[ -n "$AUTH_TOKEN" ]]; then
-    $CMD authtoken $AUTH_TOKEN
-else
-    $CMD authtoken ''
-fi
-
-clear
+$CMD authtoken ${AUTH_TOKEN:-''} > /dev/null
 
 PARAMS=${PARAMS:-$(echo $@)}
 
