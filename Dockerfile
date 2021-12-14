@@ -13,9 +13,11 @@ LABEL   maintainer="Dmitry Shkoliar @shkoliar"
 
 COPY    --from=ngrok /ngrok /bin/ngrok
 COPY    start.sh /
+
+ENV     AUTH_TOKEN
         
 RUN     mkdir -p /home/ngrok /home/ngrok/.ngrok2 && \
-		printf 'web_addr: 0.0.0.0:4551' > /home/ngrok/.ngrok2/ngrok.yml && \
+		printf "web_addr: 0.0.0.0:4551\nauthtoken: $AUTH_TOKEN" > /home/ngrok/.ngrok2/ngrok.yml && \
 		addgroup -g 4551 -S ngrok && \
         adduser -u 4551 -S ngrok -G ngrok -h /home/ngrok -s /bin/ash && \
 		chown -R ngrok:ngrok /home/ngrok && \
