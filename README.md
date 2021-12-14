@@ -10,7 +10,7 @@ A Docker image for [ngrok](https://ngrok.com) service to expose a local docker e
 The example below assumes that you have running web server docker container named `dev_web_1` with exposed port `80`.
 
 ```bash
-docker run --rm -it --link dev_web_1 shkoliar/ngrok ngrok http dev_web_1:80
+docker run --rm -it --link dev_web_1 shkoliar/ngrok http dev_web_1:80
 ```
 
 With command line usage, ngrok session is active until it won't be terminated by `Ctrl+C` combination.
@@ -20,7 +20,7 @@ With command line usage, ngrok session is active until it won't be terminated by
 **Using ngrok parameters**
 
 ```bash
-docker run --rm -it --link <web-container-name> [--net <default-netowrk-name>] shkoliar/ngrok ngrok <ngrok-parameters> <web-container-name>:<port>
+docker run --rm -it --link <web-container-name> [--net <default-netowrk-name>] shkoliar/ngrok <ngrok-parameters> <web-container-name>:<port>
 ```
 
 For information about ngrok parameters, please refer to [ngrok documentation](https://ngrok.com/docs).
@@ -44,7 +44,7 @@ docker: Error response from daemon: Cannot link to /dev_web_1, as it does not be
 _You need to specify default docker network, for example_
 
 ```bash
-docker run --rm -it --link dev_web_1 --net dev_default shkoliar/ngrok ngrok http dev_web_1:80
+docker run --rm -it --link dev_web_1 --net dev_default shkoliar/ngrok http dev_web_1:80
 ```
 
 ### As part of docker-compose.yml file
@@ -79,9 +79,9 @@ List of available environment variables to configure ngrok in command line usage
 | HOST_HEADER | \*                         |           | Optional, rewrite incoming HTTP requests with a modified Host header. e.g. `HOST_HEADER=localdev.test`                                                      |
 | BIND_TLS    | true, false                |           | Optional, forward only HTTP or HTTPS traffic, but not both. By default, when ngrok runs an HTTP tunnel, it opens endpoints for both HTTP and HTTPS traffic. |
 | SUBDOMAIN   | \*                         |           | Optional, specifies the subdomain to use with ngrok, if unspecified ngrok with generate a unique subdomain on each start.                                   |
-| AUTH_TOKEN  | \*                         |           | Optional, token used to authorise your subdomain with ngrok.                                                                                                |
+| AUTH_TOKEN  | \*                         |           | Optional, token used to authorise your subdomain with ngrok.                                                                                                 |
 | DEBUG       | true                       |           | Optional, write logs to stdout.                                                                                                                             |
-| PARAMS      | \*                         |           | Pass all ngrok parameters by one string. When specified, any other env variables are skipped.                                                               |
+| PARAMS      | \*                         |           | Pass all ngrok parameters by one string. When specified, any other env variables are skipped (Except AUTH_TOKEN).|
 
 For more information about ngrok parameters, please refer to [ngrok documentation](https://ngrok.com/docs).
 
