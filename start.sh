@@ -7,7 +7,11 @@ $CMD authtoken ${AUTH_TOKEN:-''} > /dev/null
 PARAMS=${PARAMS:-$(echo $@)}
 
 if [[ -n "$PARAMS" ]]; then
-    CMD="$CMD $PARAMS"
+    if [[ "$PARAMS" == "$CMD "* ]]; then
+        CMD="$PARAMS"
+    else
+        CMD="$CMD $PARAMS"
+    fi
 else
     PROTOCOL=${PROTOCOL:-http}
     PORT=${PORT:-80}
