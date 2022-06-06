@@ -35,7 +35,7 @@ else
     fi
 
     if [[ -n "$BASICAUTH" ]]; then
-        CMD="$CMD --basic-auth=$BASICAUTH"
+        CMD="$CMD --auth=$BASICAUTH"
     fi
 
     if [[ -n "$DEBUG" ]]; then
