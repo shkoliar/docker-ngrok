@@ -34,6 +34,10 @@ else
         CMD="$CMD -subdomain=$SUBDOMAIN"
     fi
 
+    if [[ -n "$BASICAUTH" ]]; then
+        CMD="$CMD --auth=$BASICAUTH"
+    fi
+
     if [[ -n "$DEBUG" ]]; then
         CMD="$CMD -log stdout"
     fi
