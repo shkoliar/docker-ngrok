@@ -1,12 +1,11 @@
 FROM alpine as ngrok
+ARG TARGETPLATFORM
 
+RUN apk add --no-cache --virtual .bootstrap-deps ca-certificates &&  \
+    if [ "$TARGETPLATFORM" = "linux/amd64" ]; then ARCHITECTURE=amd64; elif [ "$TARGETPLATFORM" = "linux/arm64" ]; then ARCHITECTURE=arm64; else ARCHITECTURE=amd64; fi && \
+    wget -O /tmp/ngrok.tgz "https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-${ARCHITECTURE}.tgz" && \
+    tar -xvzf /tmp/ngrok.tgz 
 
-
-RUN apk add --no-cache --virtual .bootstrap-deps ca-certificates
-
-RUN wget -O /tmp/ngrok.tgz https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-arm64.tgz
-
-RUN tar -xvzf /tmp/ngrok.tgz 
 
 RUN apk del .bootstrap-deps
 
