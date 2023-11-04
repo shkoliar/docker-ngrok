@@ -19,7 +19,7 @@ else
     CMD="$CMD $PROTOCOL"
 
     if [[ -n "$REGION" ]]; then
-        CMD="$CMD -region=$REGION"
+        CMD="$CMD --region=$REGION"
     fi
 
     if [[ -n "$HOST_HEADER" ]]; then
